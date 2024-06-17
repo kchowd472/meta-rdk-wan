@@ -9,8 +9,8 @@ DEPENDS_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'rdkb_wan_manager', '
 require recipes-ccsp/ccsp/ccsp_common.inc
 
 PV = "${RDK_RELEASE}+git${SRCPV}"
-SRC_URI = "git://git@github.com/rdkcentral/RdkWanManager.git;branch=main;protocol=https;name=WanManager"
-SRCREV = "v2.1.0"
+SRC_URI = "https://github.com/kchowd472/RdkWanManager.git;branch=wan_ip;protocol=https;name=WanManager"
+SRCREV = "729dc013e128cab579287a96bfeb12b9d7213b18"
 
 
 SRCREV_FORMAT = "WanManager"
@@ -24,6 +24,7 @@ export ISRDKB_WAN_UNIFICATION_ENABLED = "${@bb.utils.contains('DISTRO_FEATURES',
 export XML_NAME = "${@bb.utils.contains('ISRDKB_WAN_UNIFICATION_ENABLED', 'true','RdkWanManager_v2.xml','RdkWanManager.xml', d)}"
 
 CFLAGS_append = " -fcommon"
+CFLAGS_append = " -DRBUS_WAN_IP"
 CFLAGS_append = " \
     -I${STAGING_INCDIR} \
     -I${STAGING_INCDIR}/dbus-1.0 \
